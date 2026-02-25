@@ -62,6 +62,8 @@ For LLM selection:
 
 ## Usage
 
+### Command Line Usage
+
 Run the main script:
 
 ```bash
@@ -75,14 +77,36 @@ The application will:
 4. Generate a summary using the selected LLM
 5. Save the full transcript to `transcript.txt`
 
+### Web Interface Usage
+
+Start the Flask web server:
+
+```bash
+python -m src.api.app
+```
+
+Then navigate to `http://localhost:5000` in your browser to access the web interface. You can upload an audio file through the interface and get the results displayed in your browser.
+
 ## Docker Deployment
 
-Build and run with Docker:
+### CLI Version
+
+Build and run the CLI version with Docker:
 
 ```bash
 docker build -t audio-summarizer .
 docker run -e HF_TOKEN="your_token" -e AUDIO_FILE="input.mp3" -v $(pwd):/app audio-summarizer
 ```
+
+### Web Interface Version
+
+To run the web interface in Docker, build the image as above and then run:
+
+```bash
+docker run -e HF_TOKEN="your_token" -p 5000:5000 audio-summarizer python -m src.api.app
+```
+
+Then access the web interface at `http://localhost:5000`.
 
 ## Project Structure
 

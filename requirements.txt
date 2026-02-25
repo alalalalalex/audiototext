@@ -12,6 +12,9 @@ ollama>=0.1.7
 # For Groq API (alternative to local LLM)
 groq>=0.4.0
 
+# For web interface
+flask>=2.3.0
+
 # For packaging and distribution
 setuptools>=65.0.0
 wheel>=0.38.0
