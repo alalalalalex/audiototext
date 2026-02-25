@@ -1,6 +1,5 @@
 # Core dependencies for audio processing and transcription
 faster-whisper>=0.10.0
-pyannote.audio>=3.1.0
 torch>=2.0.0
 
 # For text processing and tokenization
@@ -8,9 +7,6 @@ nltk>=3.8.1
 
 # For LLM integration
 ollama>=0.1.7
-
-# For Groq API (alternative to local LLM)
-groq>=0.4.0
 
 # For web interface
 flask>=2.3.0
