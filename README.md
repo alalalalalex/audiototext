@@ -45,21 +45,19 @@ The project follows a modular architecture with the following components:
    pip install -r requirements.txt
    ```
 
-4. Obtain a Hugging Face token from [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) and accept the license agreement for `pyannote/speaker-diarization-3.1` model.
+
 
 ## Configuration
 
 Set the required environment variables:
 
 ```bash
-export HF_TOKEN="your_huggingface_token"
+
 export AUDIO_FILE="path_to_your_audio_file.mp3"
 ```
 
 For LLM selection:
-- To use Ollama (local): `export USE_OLLAMA=true`
-- To use Groq API: `export GROQ_API_KEY="your_groq_api_key"`
-
+моделью ollama запущенной http://192.168.23.10:11434
 ## Usage
 
 ### Command Line Usage
