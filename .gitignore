@@ -1,35 +1,31 @@
 ```
-# Dependencies
-*.whl
-*.egg-info/
-.eggs/
-venv/
-.venv/
-.env
-.env.local
-.env.*
-
 # Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .Python
-*.so
-*.egg
-*.manifest
-*.spec
+venv/
+.venv/
+.env
+.env.local
+.env.*
 
-# Build and distribution
+# Build artifacts
 build/
 dist/
-*.tar.gz
-*.zip
+*.egg-info/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
 
 # Logs
 *.log
 
-# Editor
+# Editors
 .vscode/
 .idea/
 *.swp
@@ -39,22 +35,4 @@ dist/
 # OS
 .DS_Store
 Thumbs.db
-
-# Testing
-.coverage
-htmlcov/
-.coverage.*
-.cache/
-.pytest_cache/
-.mypy_cache/
-
-# General
-*.tmp
-*~
-```
-
-Wait, I need to reconsider this. The only modified file is `requirements.txt`, which is a source/config file. There are no build artifacts, dependencies, or temp files in the change list that would indicate this is a project with compiled outputs or dependencies that need ignoring.
-
-Since only a source/config file (`requirements.txt`) was modified and there are no build artifacts or dependency-related files in the changes, the output should be empty.
-
 ```
