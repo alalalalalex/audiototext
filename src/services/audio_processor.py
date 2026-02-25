@@ -7,8 +7,8 @@ from typing import List, Dict, Any
 from pathlib import Path
 
 from faster_whisper import WhisperModel
-from pyannote.audio import Pipeline
-from pyannote.core import Segment
+#from pyannote.audio import Pipeline
+#from pyannote.core import Segment
 import torch
 
 from src.utils.config import Config
