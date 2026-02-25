@@ -12,6 +12,7 @@ from pyannote.core import Segment
 import torch
 
 from src.utils.config import Config
+from src.models import TranscriptSegment, TranscriptResult, DiarizationResult
 
 
 class AudioProcessor:
@@ -53,7 +54,7 @@ class AudioProcessor:
             compute_type=compute_type
         )
     
-    def process_audio(self, audio_path: str) -> List[Dict[str, Any]]:
+    def process_audio(self, audio_path: str) -> TranscriptResult:
         """
         Process audio file with both diarization and transcription.
         
@@ -61,7 +62,7 @@ class AudioProcessor:
             audio_path: Path to the audio file
             
         Returns:
-            List of dictionaries containing speaker, text, start and end times
+            TranscriptResult object containing segments with speaker information
         """
         print(f"Loading audio: {audio_path}...")
         
@@ -79,7 +80,7 @@ class AudioProcessor:
         segments = list(segments)
         
         # Match speakers to transcribed segments
-        transcript_with_speakers = []
+        transcript_segments = []
         
         for segment in segments:
             start, end = segment.start, segment.end
@@ -95,11 +96,19 @@ class AudioProcessor:
             # Take the primary speaker for this segment (simplified approach)
             speaker_label = speakers[0] if speakers else "UNKNOWN"
             
-            transcript_with_speakers.append({
-                "speaker": speaker_label,
-                "text": text.strip(),
-                "start": start,
-                "end": end
-            })
+            transcript_segments.append(TranscriptSegment(
+                speaker=speaker_label,
+                text=text.strip(),
+                start_time=start,
+                end_time=end,
+                confidence=getattr(segment, 'avg_logprob', None)  # Using average log probability as confidence if available
+            ))
         
-        return transcript_with_speakers
+        # Calculate total duration
+        total_duration = info.duration
+        
+        return TranscriptResult(
+            segments=transcript_segments,
+            total_duration=total_duration,
+            language=self.config.AUDIO_LANGUAGE
+        )

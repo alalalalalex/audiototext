@@ -26,23 +26,23 @@ class TextFormatter:
             nltk.download('punkt')
             nltk.download('punkt_tab')
     
-    def format_transcript(self, transcript_data: List[Dict[str, Any]]) -> str:
+    def format_transcript(self, transcript_result: TranscriptResult) -> str:
         """
         Format the transcript data into a readable text format with speaker labels.
         
         Args:
-            transcript_data: List of dictionaries containing speaker, text, start, end
+            transcript_result: TranscriptResult object containing segments with speaker information
             
         Returns:
             Formatted transcript as a string with speaker labels
         """
         formatted_text = ""
         
-        for item in transcript_data:
+        for segment in transcript_result.segments:
             # Split text into sentences for better readability
-            sentences = sent_tokenize(item['text'], language='russian')
+            sentences = sent_tokenize(segment.text, language='russian')
             for sentence in sentences:
-                formatted_text += f"{item['speaker']}: {sentence}\n"
+                formatted_text += f"{segment.speaker}: {sentence}\n"
         
         return formatted_text
     

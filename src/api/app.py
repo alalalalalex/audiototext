@@ -270,10 +270,10 @@ def process_audio():
     
     try:
         # Process audio and get transcript with speakers
-        transcript_data = audio_processor.process_audio(temp_filename)
+        transcript_result = audio_processor.process_audio(temp_filename)
         
         # Format the transcript
-        formatted_transcript = text_formatter.format_transcript(transcript_data)
+        formatted_transcript = text_formatter.format_transcript(transcript_result)
         
         # Generate summary
         summary = summarizer.generate_summary(formatted_transcript)

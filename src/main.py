@@ -48,11 +48,11 @@ def main():
     
     # Step 1: Process audio and perform diarization + transcription
     logger.info("Step 1: Processing audio and performing diarization...")
-    transcript_data = audio_processor.process_audio(config.AUDIO_FILE)
+    transcript_result = audio_processor.process_audio(config.AUDIO_FILE)
     
     # Step 2: Format the transcript for better readability
     logger.info("Step 2: Formatting transcript...")
-    formatted_transcript = text_formatter.format_transcript(transcript_data)
+    formatted_transcript = text_formatter.format_transcript(transcript_result)
     
     # Save full transcript to file
     transcript_file = "transcript.txt"
